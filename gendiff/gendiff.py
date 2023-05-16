@@ -5,17 +5,26 @@ def format_bool(value):
     return str(value).lower() if isinstance(value, bool) else value
 
 
+def get_no_diff_string(key, value):
+    return f"    {key}: {value}\n"
+
+
+def get_diff_string(key, value1, value2):
+    result = ""
+    if value1 is not None:
+        result += f"  - {key}: {value1}\n"
+    if value2 is not None:
+        result += f"  + {key}: {value2}\n"
+
+
 def get_value_diff(key, value1, value2):
     value1_formatted = format_bool(value1)
     value2_formatted = format_bool(value2)
     result = ""
     if value1 != value2:
-        if value1 is not None:
-            result += f"  - {key}: {value1_formatted}\n"
-        if value2 is not None:
-            result += f" + {key}: {value2_formatted}\n"
+        get_diff_string(key, value1_formatted, value2_formatted)
     else:
-        result += f"    {key}: {value1_formatted}\n"
+        get_no_diff_string(key, value1_formatted)
     return result
 
 
