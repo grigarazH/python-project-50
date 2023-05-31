@@ -1,5 +1,5 @@
 from gendiff.gendiff import format_bool, get_no_diff_string
-from grendiff.gendiff import get_diff_string, get_value_diff, generate_diff
+from gendiff.gendiff import get_diff_string, get_value_diff, generate_diff
 import os
 
 

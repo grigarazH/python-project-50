@@ -1,11 +1,6 @@
 install:
 	poetry install
 
-
-build:
-	poetry build
-
-
 publish:
 	poetry publish --dry-run
 
@@ -20,3 +15,19 @@ lint:
 
 lint-test:
 	poetry run flake8 tests
+
+selfcheck:
+	poetry check
+
+test:
+	poetry run pytest
+
+test-coverage:
+	poetry run pytest --cov=gendiff --cov-report xml
+
+check:
+	selfcheck test lint
+
+build:
+	check
+	poetry build
