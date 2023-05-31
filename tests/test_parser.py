@@ -42,5 +42,5 @@ def test_parse_file(expected):
     assert expected[1] == parse_file(file2_path_json)
     file1_path_yaml = os.path.join(current_dir, 'fixtures/file1.yml')
     file2_path_yaml = os.path.join(current_dir, 'fixtures/file2.yaml')
-    assert expected[0] == parse_file(file1_path_json)
-    assert expected[1] == parse_file(file2_path_json)
+    assert expected[0] == parse_file(file1_path_yaml)
+    assert expected[1] == parse_file(file2_path_yaml)
