@@ -15,6 +15,7 @@ def get_diff_string(key, value1, value2):
         result += f"  - {key}: {value1}\n"
     if value2 is not None:
         result += f"  + {key}: {value2}\n"
+    return result
 
 
 def get_value_diff(key, value1, value2):
@@ -22,9 +23,9 @@ def get_value_diff(key, value1, value2):
     value2_formatted = format_bool(value2)
     result = ""
     if value1 != value2:
-        get_diff_string(key, value1_formatted, value2_formatted)
+        result += get_diff_string(key, value1_formatted, value2_formatted)
     else:
-        get_no_diff_string(key, value1_formatted)
+        result += get_no_diff_string(key, value1_formatted)
     return result
 
 
