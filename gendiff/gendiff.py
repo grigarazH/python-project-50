@@ -1,6 +1,5 @@
-import json
-import yaml
 from gendiff.parser import parse_file
+
 
 def format_bool(value):
     return str(value).lower() if isinstance(value, bool) else value
@@ -47,4 +46,3 @@ def generate_diff(file_path1, file_path2):
     if not (file1 and file2):
         return "Wrong format"
     return generate_diff_for_dicts(file1, file2)
-

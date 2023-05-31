@@ -17,4 +17,3 @@ def parse_file(filepath):
         return parse_yaml(filepath)
     else:
         return False
-
