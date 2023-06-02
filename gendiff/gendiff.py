@@ -1,6 +1,7 @@
 from gendiff.parser import parse_file
 from gendiff.formats.stylish import generate_diff_stylish
 from gendiff.formats.plain import generate_diff_plain
+from gendiff.formats.json import generate_diff_json
 
 
 def get_value_diff(value1, value2):
@@ -39,5 +40,7 @@ def generate_diff(file_path1, file_path2, format="stylish"):
         return generate_diff_stylish(dict_diff)
     elif format == "plain":
         return generate_diff_plain(dict_diff)
+    elif format == "json":
+        return generate_diff_json(dict_diff)
     else:
         return "Wrong display format"
