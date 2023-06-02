@@ -1,6 +1,6 @@
-from gendiff.gendiff import generate_diff, get_diff_dict, generate_diff_stylish
+from gendiff.gendiff import generate_diff, get_diff_dict
+from gendiff.parser import parse_json
 import os
-import json
 
 
 def test_get_diff_dict():
@@ -85,39 +85,30 @@ def test_get_diff_dict():
         },
     }
     current_dir = os.path.dirname(__file__)
-    result_path = os.path.join(current_dir, 'fixtures/result.txt')
     file1_path = os.path.join(current_dir, 'fixtures/file3.json')
     file2_path = os.path.join(current_dir, 'fixtures/file4.json')
-    file1 = json.load(open(file1_path))
-    file2 = json.load(open(file2_path))
+    file1 = parse_json(file1_path)
+    file2 = parse_json(file2_path)
     assert result == get_diff_dict(file1, file2)
-
-
-def test_generate_diff_stylish():
-    current_dir = os.path.dirname(__file__)
-    result_path = os.path.join(current_dir, 'fixtures/result2.txt')
-    result = open(result_path).read()
-    file1_path = os.path.join(current_dir, 'fixtures/file3.json')
-    file2_path = os.path.join(current_dir, 'fixtures/file4.json')
-    file1 = json.load(open(file1_path))
-    file2 = json.load(open(file2_path))
-    diff_dict = get_diff_dict(file1, file2)
-    assert result == generate_diff_stylish(diff_dict)
 
 
 def test_generate_diff():
     current_dir = os.path.dirname(__file__)
-    result_path = os.path.join(current_dir, 'fixtures/result.txt')
+    result_path = os.path.join(current_dir, 'fixtures/result_stylish.txt')
     result = open(result_path).read()
-    result2_path = os.path.join(current_dir, 'fixtures/result2.txt')
+    result2_path = os.path.join(current_dir, 'fixtures/result2_stylish.txt')
     result2 = open(result2_path).read()
-    file1_path_json = os.path.join(current_dir, 'fixtures/file1.json')
-    file2_path_json = os.path.join(current_dir, 'fixtures/file2.json')
-    file3_path_json = os.path.join(current_dir, 'fixtures/file3.json')
-    file4_path_json = os.path.join(current_dir, 'fixtures/file4.json')
-    assert result == generate_diff(file1_path_json, file2_path_json)
-    assert result2 == generate_diff(file3_path_json, file4_path_json)
-    file1_path_yaml = os.path.join(current_dir, 'fixtures/file1.yml')
-    file2_path_yaml = os.path.join(current_dir, 'fixtures/file2.yaml')
-    assert result == generate_diff(file1_path_yaml, file2_path_yaml)
-    assert "Wrong format" == generate_diff(result_path, file1_path_json)
+    file1_path = os.path.join(current_dir, 'fixtures/file1.json')
+    file2_path = os.path.join(current_dir, 'fixtures/file2.yaml')
+    file3_path = os.path.join(current_dir, 'fixtures/file3.yml')
+    file4_path = os.path.join(current_dir, 'fixtures/file4.json')
+    assert result == generate_diff(file1_path, file2_path)
+    assert result2 == generate_diff(file3_path, file4_path)
+    result_plain_path = os.path.join(current_dir, 'fixtures/result_plain.txt')
+    result2_plain_path = os.path.join(current_dir, 'fixtures/result2_plain.txt')
+    result_plain = open(result_plain_path).read()
+    result2_plain = open(result2_plain_path).read()
+    assert result_plain == generate_diff(file1_path, file2_path, "plain")
+    assert result2_plain == generate_diff(file3_path, file4_path, "plain")
+    assert "Wrong file format" == generate_diff(result_path, file1_path)
+    assert "Wrong display format" == generate_diff(file1_path, file2_path, "wrong")
