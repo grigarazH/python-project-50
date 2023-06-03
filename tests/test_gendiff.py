@@ -1,4 +1,5 @@
-from gendiff.gendiff import generate_diff, get_diff_dict
+from gendiff import generate_diff
+from gendiff.gendiff import get_diff_dict
 from gendiff.parser import parse_file, parse_json
 
 
