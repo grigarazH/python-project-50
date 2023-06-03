@@ -52,10 +52,10 @@ gendiff [-f FORMAT] file1_path file2_path
 [![asciicast](https://asciinema.org/a/QkNmSXxc4YLvSO8IrSRCybt5D.svg)](https://asciinema.org/a/QkNmSXxc4YLvSO8IrSRCybt5D)
 
 ### Nested stylish
-[![asciicast](https://asciinema.org/a/pR2m1h2Ge7E2xj2LYpJ0yWLdB.svg)](https://asciinema.org/a/pR2m1h2Ge7E2xj2LYpJ0yWLdB)
+[![asciicast](https://asciinema.org/a/wlMYOd0TskKjn0ymU1U6DAAzt.svg)](https://asciinema.org/a/wlMYOd0TskKjn0ymU1U6DAAzt)
 
 ### Nested plain
-[![asciicast](https://asciinema.org/a/SIAtYwcc4E8RPONM5i0Y8yXYk.svg)](https://asciinema.org/a/SIAtYwcc4E8RPONM5i0Y8yXYk)
+[![asciicast](https://asciinema.org/a/KjxqqaP8GqMZT7OrzmQZGtSnE.svg)](https://asciinema.org/a/KjxqqaP8GqMZT7OrzmQZGtSnE)
 
 ### Nested JSON
-[![asciicast](https://asciinema.org/a/GsbCzmDVKuEcUhobQOcEw2g4I.svg)](https://asciinema.org/a/GsbCzmDVKuEcUhobQOcEw2g4I)
+[![asciicast](https://asciinema.org/a/Kw4ZCrAEMXf52ITsEOAza1wpc.svg)](https://asciinema.org/a/Kw4ZCrAEMXf52ITsEOAza1wpc)
