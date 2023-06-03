@@ -32,6 +32,7 @@ def get_diff_dict(dict1, dict2):
 
 
 def format_diff(diff_dict, format):
+    format = format.lower()
     if format == "stylish":
         return generate_diff_stylish(diff_dict)
     elif format == "plain":

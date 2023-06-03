@@ -4,7 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/d2783c38770166bfa05f/maintainability)](https://codeclimate.com/github/grigarazH/python-project-50/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/d2783c38770166bfa05f/test_coverage)](https://codeclimate.com/github/grigarazH/python-project-50/test_coverage)
 
-This program generates differences between two JSON or YAML files.
+This program compares two JSON or YAML files and shows the difference between them.
 3 formats of output are supported: stylish, plain and JSON.
 
 
@@ -36,8 +36,10 @@ To use the program, use the following command:
 gendiff [-f FORMAT] file1_path file2_path
 ```
 
-where `FORMAT` is output format, 
-`file1_path`, `file2_path` are paths to files.
+`FORMAT` is the output format accepts `stylish`, `plain`, `json` formats. Default format is `stylish`.
+
+`file1_path`, `file2_path` are the paths to the files compared by the program.
+
 
 
 
