@@ -7,10 +7,8 @@ from gendiff.formats.json import generate_diff_json
 def get_value_diff(value1, value2):
     value_diff = {}
     if isinstance(value1, dict) and isinstance(value2, dict):
-        value_diff["type"] = "dict"
         value_diff["children"] = get_diff_dict(value1, value2)
     else:
-        value_diff["type"] = "value"
         if value1 != value2:
             value_diff["removed"] = value1
         else:
@@ -26,7 +24,7 @@ def get_diff_dict(dict1, dict2):
     for key, value2 in dict2.items():
         value1 = dict1.get(key)
         if key not in diff_dict:
-            diff_dict[key] = {"type": "value"}
+            diff_dict[key] = {}
         if (value1 != value2 and not
            (isinstance(value1, dict) and isinstance(value2, dict))):
             diff_dict[key]["added"] = value2

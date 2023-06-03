@@ -1,5 +1,4 @@
 import pytest
-import os
 from gendiff.parser import parse_file, parse_json, parse_yaml
 
 @pytest.fixture
