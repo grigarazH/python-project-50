@@ -15,8 +15,6 @@ def format_value_stylish(key, value, depth=0):
         return f"{key}: {str(value).lower()}"
     elif value is None:
         return f"{key}: null"
-    elif value == "":
-        return f"{key}:"
     else:
         return f"{key}: {value}"
 
