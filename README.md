@@ -10,7 +10,7 @@ This program compares two JSON or YAML files and shows the difference between th
 
 ## Requirements
 
-* Python 3.11+
+* Python 3.10+
 * Poetry 1.4.1+
 
 ## Installation
