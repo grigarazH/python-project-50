@@ -66,21 +66,6 @@ def expected():
     return dict1, dict2
 
 
-def test_parse_json(files, expected):
-    _, _, _, file1_path, file2_path, _, _ = files
-    assert expected[0] == parse_json(file1_path)
-    assert expected[1] == parse_json(file2_path)
-    assert parse_json("wrong_path.json") == "file_not_found"
-
-
-def test_parse_yaml(files, expected):
-    _, _, _, _, _, file1_path, file2_path = files
-    assert expected[0] == parse_yaml(file1_path)
-    assert expected[1] == parse_yaml(file2_path)
-    assert parse_yaml("wrong_path.yaml") == "file_not_found"
-
-
-
 def test_parse_file(files, expected):
     _, _, _, file1_path_json, file2_path_json, file1_path_yaml, file2_path_yaml = files
     assert expected[0] == parse_file(file1_path_json)
