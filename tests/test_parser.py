@@ -1,5 +1,6 @@
 import pytest
-from gendiff.parser import parse_file, parse_json, parse_yaml
+from gendiff.parser import parse_file
+
 
 @pytest.fixture
 def expected():
@@ -61,12 +62,13 @@ def expected():
             "fee": 100500
         }
     }
-    
+
     return dict1, dict2
 
 
-def test_parse_file(files, expected):
-    _, _, _, file1_path_json, file2_path_json, file1_path_yaml, file2_path_yaml = files
+def test_parse_file(filenames, expected):
+    (_, _, _, file1_path_json, file2_path_json,
+     file1_path_yaml, file2_path_yaml) = filenames
     assert expected[0] == parse_file(file1_path_json)
     assert expected[1] == parse_file(file2_path_json)
     assert expected[0] == parse_file(file1_path_yaml)

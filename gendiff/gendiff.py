@@ -31,23 +31,24 @@ def get_diff_dict(dict1, dict2):
     return {key: value for key, value in sorted(diff_dict.items())}
 
 
-def format_diff(dict_diff, format):
+def format_diff(diff_dict, format):
     if format == "stylish":
-        return generate_diff_stylish(dict_diff)
+        return generate_diff_stylish(diff_dict)
     elif format == "plain":
-        return generate_diff_plain(dict_diff)
+        return generate_diff_plain(diff_dict)
     elif format == "json":
-        return generate_diff_json(dict_diff)
+        return generate_diff_json(diff_dict)
     else:
         return "Wrong display format"
 
 
 def generate_diff(file_path1, file_path2, format="stylish"):
-    file1 = parse_file(file_path1)
-    file2 = parse_file(file_path2)
-    if file1 == "file_not_found" or file2 == "file_not_found":
+    file1_content = parse_file(file_path1)
+    file2_content = parse_file(file_path2)
+    if file1_content == "file_not_found" or file2_content == "file_not_found":
         return "Files not found"
-    if file1 == "file_format_error" or file2 == "file_format_error":
+    if (file1_content == "file_format_error"
+       or file2_content == "file_format_error"):
         return "Wrong file format"
-    dict_diff = get_diff_dict(file1, file2)
-    return format_diff(dict_diff, format)
+    diff_dict = get_diff_dict(file1_content, file2_content)
+    return format_diff(diff_dict, format)
