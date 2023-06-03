@@ -1,10 +1,16 @@
 [tool.poetry]
 name = "hexlet-code"
 version = "0.7.0"
-description = ""
-authors = ["grigarazh <grigarazh@yandex.ru>"]
+description = "Difference generator"
+authors = ["Grigory Sukhotin <grigarazh@yandex.ru>"]
+classifiers = [
+    "Environment :: Console",
+    "Topic :: Utilities"
+]
 readme = "README.md"
 packages = [{include = "gendiff"}]
+repository = "https://github.com/grigarazh/python-project-50"
+
 
 [tool.poetry.dependencies]
 python = "^3.10"
