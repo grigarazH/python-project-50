@@ -47,10 +47,9 @@ def format_diff(dict_diff, format):
 def generate_diff(file_path1, file_path2, format="stylish"):
     file1 = parse_file(file_path1)
     file2 = parse_file(file_path2)
-    if (isinstance(file1, FileNotFoundError) or isinstance(file2,
-                                                           FileNotFoundError)):
+    if file1 == "file_not_found" or file2 == "file_not_found":
         return "Files not found"
-    if not (file1 and file2):
+    if file1 == "file_format_error" or file2 == "file_format_error":
         return "Wrong file format"
     dict_diff = get_diff_dict(file1, file2)
     return format_diff(dict_diff, format)
