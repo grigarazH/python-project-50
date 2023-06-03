@@ -1,41 +1,53 @@
 {
     "common": {
+        "type": "dict",
         "children": {
             "follow": {
+                "type": "value",
                 "added": false
             },
             "setting1": {
+                "type": "value",
                 "unchanged": "Value 1"
             },
             "setting2": {
+                "type": "value",
                 "removed": 200
             },
             "setting3": {
+                "type": "value",
                 "removed": true,
                 "added": null
             },
             "setting4": {
+                "type": "value",
                 "added": "blah blah"
             },
             "setting5": {
+                "type": "value",
                 "added": {
                     "key5": "value5"
                 }
             },
             "setting6": {
+                "type": "dict",
                 "children": {
                     "doge": {
+                        "type": "dict",
                         "children": {
                             "wow": {
+                                "type": "value",
                                 "removed": "",
                                 "added": "so much"
                             }
                         }
                     },
                     "key": {
+                        "type": "value",
                         "unchanged": "value"
                     },
                     "ops": {
+                        "type": "value",
                         "added": "vops"
                     }
                 }
@@ -43,15 +55,19 @@
         }
     },
     "group1": {
+        "type": "dict",
         "children": {
             "baz": {
+                "type": "value",
                 "removed": "bas",
                 "added": "bars"
             },
             "foo": {
+                "type": "value",
                 "unchanged": "bar"
             },
             "nest": {
+                "type": "value",
                 "removed": {
                     "key": "value"
                 },
@@ -60,6 +76,7 @@
         }
     },
     "group2": {
+        "type": "value",
         "removed": {
             "abc": 12345,
             "deep": {
@@ -68,6 +85,7 @@
         }
     },
     "group3": {
+        "type": "value",
         "added": {
             "deep": {
                 "id": {

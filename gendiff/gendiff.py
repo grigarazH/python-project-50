@@ -33,7 +33,7 @@ def get_diff_dict(dict1, dict2):
     return {key: value for key, value in sorted(diff_dict.items())}
 
 
-def format_diff(dict_diff):
+def format_diff(dict_diff, format):
     if format == "stylish":
         return generate_diff_stylish(dict_diff)
     elif format == "plain":
@@ -53,4 +53,4 @@ def generate_diff(file_path1, file_path2, format="stylish"):
     if not (file1 and file2):
         return "Wrong file format"
     dict_diff = get_diff_dict(file1, file2)
-    return format_diff(dict_diff)
+    return format_diff(dict_diff, format)
