@@ -2,6 +2,8 @@ from gendiff.parser import parse_file
 from gendiff.formats.stylish import generate_diff_stylish
 from gendiff.formats.plain import generate_diff_plain
 from gendiff.formats.json import generate_diff_json
+from json import JSONDecodeError
+from yaml import YAMLError
 
 
 def get_value_diff(value1, value2):
@@ -53,5 +55,7 @@ def generate_diff(file_path1, file_path2, format="stylish"):
             return format_diff(diff_dict, format)
     except FileNotFoundError:
         return "Files not found"
+    except JSONDecodeError or YAMLError:
+        return "Incorrect data in files"
     except ValueError:
         return "Wrong file format"

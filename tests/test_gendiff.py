@@ -1,5 +1,5 @@
 from gendiff import generate_diff
-
+import os
 
 def test_generate_diff(filenames):
     (result_path_stylish, result_path_plain,
@@ -20,3 +20,8 @@ def test_generate_diff(filenames):
                                                 file1_path_json)
     assert "Wrong display format" == generate_diff(file1_path_yaml,
                                                    file2_path_yaml, "wrong")
+    current_dir = os.path.dirname(__file__)
+    incorrect_json_path = os.path.join(current_dir,
+                                       "fixtures/incorrect_json.json")
+    assert "Incorrect data in files" == generate_diff(file1_path_json,
+                                             incorrect_json_path)

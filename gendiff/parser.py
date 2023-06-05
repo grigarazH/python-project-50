@@ -11,5 +11,5 @@ def parse_file(file_content):
             return yaml.safe_load(file_content)
         else:
             raise ValueError('Wrong file format')
-    except FileNotFoundError:
+    except FileNotFoundError or json.JSONDecodeError or yaml.YAMLError:
         raise

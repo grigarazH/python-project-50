@@ -1,5 +1,8 @@
 import pytest
 from gendiff.parser import parse_file
+from json import JSONDecodeError
+from yaml import YAMLError
+import os
 
 
 @pytest.fixture
@@ -73,7 +76,14 @@ def test_parse_file(filenames, expected):
     assert expected[1] == parse_file(open(file2_path_json))
     assert expected[0] == parse_file(open(file1_path_yaml))
     assert expected[1] == parse_file(open(file2_path_yaml))
+    current_dir = os.path.dirname(__file__)
     with pytest.raises(FileNotFoundError):
         parse_file(open("wrong_file.json"))
+    with pytest.raises(JSONDecodeError):
+        parse_file(open(os.path.join(current_dir,
+                                     "fixtures/incorrect_json.json")))
+    with pytest.raises(YAMLError):
+        parse_file(open(os.path.join(current_dir, 
+                                     "fixtures/incorrect_yaml.yaml")))
     with pytest.raises(ValueError):
         parse_file(open(result_plain_path))
