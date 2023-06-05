@@ -14,5 +14,6 @@ def test_format_value_plain():
 def test_generate_diff_plain(filenames):
     _, result_path, _, file1_path, _, _, file2_path = filenames
     result = open(result_path).read()
-    diff_dict = get_diff_dict(parse_file(file1_path), parse_file(file2_path))
+    diff_dict = get_diff_dict(parse_file(open(file1_path)),
+                              parse_file(open(file2_path)))
     assert result == generate_diff_plain(diff_dict)

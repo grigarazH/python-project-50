@@ -67,10 +67,13 @@ def expected():
 
 
 def test_parse_file(filenames, expected):
-    (_, _, _, file1_path_json, file2_path_json,
+    (result_plain_path, _, _, file1_path_json, file2_path_json,
      file1_path_yaml, file2_path_yaml) = filenames
-    assert expected[0] == parse_file(file1_path_json)
-    assert expected[1] == parse_file(file2_path_json)
-    assert expected[0] == parse_file(file1_path_yaml)
-    assert expected[1] == parse_file(file2_path_yaml)
-    assert parse_file("wrong_path.json") == "file_not_found"
+    assert expected[0] == parse_file(open(file1_path_json))
+    assert expected[1] == parse_file(open(file2_path_json))
+    assert expected[0] == parse_file(open(file1_path_yaml))
+    assert expected[1] == parse_file(open(file2_path_yaml))
+    with pytest.raises(FileNotFoundError):
+        parse_file(open("wrong_file.json"))
+    with pytest.raises(ValueError):
+        parse_file(open(result_plain_path))
