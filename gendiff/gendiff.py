@@ -44,12 +44,14 @@ def format_diff(diff_dict, format):
 
 
 def generate_diff(file_path1, file_path2, format="stylish"):
-    file1_content = parse_file(file_path1)
-    file2_content = parse_file(file_path2)
-    if file1_content == "file_not_found" or file2_content == "file_not_found":
+    try:
+        with (open(file_path1) as file1_content,
+              open(file_path2) as file2_content):
+            file1_parsed_data = parse_file(file1_content)
+            file2_parsed_data = parse_file(file2_content)
+            diff_dict = get_diff_dict(file1_parsed_data, file2_parsed_data)
+            return format_diff(diff_dict, format)
+    except FileNotFoundError:
         return "Files not found"
-    if (file1_content == "file_format_error"
-       or file2_content == "file_format_error"):
+    except ValueError:
         return "Wrong file format"
-    diff_dict = get_diff_dict(file1_content, file2_content)
-    return format_diff(diff_dict, format)
