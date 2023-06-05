@@ -1,6 +1,7 @@
 from gendiff import generate_diff
 import os
 
+
 def test_generate_diff(filenames):
     (result_path_stylish, result_path_plain,
      result_path_json, file1_path_json,
@@ -24,4 +25,4 @@ def test_generate_diff(filenames):
     incorrect_json_path = os.path.join(current_dir,
                                        "fixtures/incorrect_json.json")
     assert "Incorrect data in files" == generate_diff(file1_path_json,
-                                             incorrect_json_path)
+                                                      incorrect_json_path)

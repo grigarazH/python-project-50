@@ -83,7 +83,7 @@ def test_parse_file(filenames, expected):
         parse_file(open(os.path.join(current_dir,
                                      "fixtures/incorrect_json.json")))
     with pytest.raises(YAMLError):
-        parse_file(open(os.path.join(current_dir, 
+        parse_file(open(os.path.join(current_dir,
                                      "fixtures/incorrect_yaml.yaml")))
     with pytest.raises(ValueError):
         parse_file(open(result_plain_path))
