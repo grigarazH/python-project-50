@@ -1,4 +1,4 @@
-from gendiff.parser import parse_file
+from gendiff.parser import parse_file, get_file_format
 from gendiff.formats.stylish import generate_diff_stylish
 from gendiff.formats.plain import generate_diff_plain
 from gendiff.formats.json import generate_diff_json
@@ -42,20 +42,18 @@ def format_diff(diff_dict, format):
     elif format == "json":
         return generate_diff_json(diff_dict)
     else:
-        return "Wrong display format"
+        raise ValueError("wrong_display_format")
 
 
 def generate_diff(file_path1, file_path2, format="stylish"):
     try:
         with (open(file_path1) as file1_content,
               open(file_path2) as file2_content):
-            file1_parsed_data = parse_file(file1_content)
-            file2_parsed_data = parse_file(file2_content)
+            file1_parsed_data = parse_file(file1_content,
+                                           get_file_format(file1_content))
+            file2_parsed_data = parse_file(file2_content,
+                                           get_file_format(file2_content))
             diff_dict = get_diff_dict(file1_parsed_data, file2_parsed_data)
             return format_diff(diff_dict, format)
-    except FileNotFoundError:
-        return "Files not found"
-    except JSONDecodeError or YAMLError:
-        return "Incorrect data in files"
-    except ValueError:
-        return "Wrong file format"
+    except FileNotFoundError or JSONDecodeError or YAMLError or ValueError:
+        raise
