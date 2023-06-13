@@ -31,7 +31,7 @@ def test_cli_args(capsys):
 
 
 def test_get_value_error_string():
-    assert (get_value_error_string(ValueError("wrong_display_format")) ==
-           "Wrong display format")
-    assert (get_value_error_string(ValueError("wrong_file_format")) ==
-           "Wrong file format")
+    assert (get_value_error_string(ValueError("wrong_display_format"))
+            == "Wrong display format")
+    assert (get_value_error_string(ValueError("wrong_file_format"))
+            == "Wrong file format")
