@@ -1,8 +1,8 @@
 import os
-from gendiff.cli import parse_cli
+from gendiff.cli import parse_cli, get_value_error_string
 
 
-def test_cli(capsys):
+def test_cli_args(capsys):
     current_dir = os.path.dirname(__file__)
     help_result_path = os.path.join(current_dir, "fixtures/help.txt")
     help_result = open(help_result_path).read()
@@ -28,3 +28,10 @@ def test_cli(capsys):
         pass
     err_output = capsys.readouterr().err
     assert wrong_arguments == err_output
+
+
+def test_get_value_error_string():
+    assert (get_value_error_string(ValueError("wrong_display_format")) ==
+           "Wrong display format")
+    assert (get_value_error_string(ValueError("wrong_file_format")) ==
+           "Wrong file format")

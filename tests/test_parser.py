@@ -70,20 +70,24 @@ def expected():
 
 
 def test_parse_file(filenames, expected):
-    (result_plain_path, _, _, file1_path_json, file2_path_json,
+    (_, _, _, file1_path_json, file2_path_json,
      file1_path_yaml, file2_path_yaml) = filenames
-    assert expected[0] == parse_file(open(file1_path_json))
-    assert expected[1] == parse_file(open(file2_path_json))
-    assert expected[0] == parse_file(open(file1_path_yaml))
-    assert expected[1] == parse_file(open(file2_path_yaml))
+    file1_json_content = open(file1_path_json)
+    file2_json_content = open(file2_path_json)
+    file1_yaml_content = open(file1_path_yaml)
+    file2_yaml_content = open(file2_path_yaml)
+    assert expected[0] == parse_file(file1_json_content, "json")
+    assert expected[1] == parse_file(file2_json_content, "json")
+    assert expected[0] == parse_file(file1_yaml_content, "yaml")
+    assert expected[1] == parse_file(file2_yaml_content, "yaml")
     current_dir = os.path.dirname(__file__)
     with pytest.raises(FileNotFoundError):
         parse_file(open("wrong_file.json"))
     with pytest.raises(JSONDecodeError):
-        parse_file(open(os.path.join(current_dir,
-                                     "fixtures/incorrect_json.json")))
+        incorrect_json_content = open(os.path.join(current_dir,
+                                      "fixtures/incorrect_json.json"))
+        parse_file(incorrect_json_content, "json")
     with pytest.raises(YAMLError):
-        parse_file(open(os.path.join(current_dir,
-                                     "fixtures/incorrect_yaml.yaml")))
-    with pytest.raises(ValueError):
-        parse_file(open(result_plain_path))
+        incorrect_yaml_content = open(os.path.join(current_dir,
+                                      "fixtures/incorrect_yaml.yaml"))
+        parse_file(incorrect_yaml_content, "yaml")

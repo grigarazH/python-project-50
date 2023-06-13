@@ -1,5 +1,7 @@
 from gendiff import generate_diff
 import os
+import pytest
+from json import JSONDecodeError
 
 
 def test_generate_diff(filenames):
@@ -15,14 +17,15 @@ def test_generate_diff(filenames):
     result_json = open(result_path_json).read()
     assert result_json == generate_diff(file1_path_json,
                                         file2_path_json, "json")
-    assert "Files not found" == generate_diff("wrong_path.json",
-                                              "wrong_path.yaml")
-    assert "Wrong file format" == generate_diff(result_path_stylish,
-                                                file1_path_json)
-    assert "Wrong display format" == generate_diff(file1_path_yaml,
-                                                   file2_path_yaml, "wrong")
+    with pytest.raises(FileNotFoundError):
+        generate_diff("wrong_path.json", "wrong_path.yaml")
+    with pytest.raises(ValueError) as error:
+        generate_diff(result_path_stylish, file1_path_json)
+        assert "wrong_file_format" in str(error.value)
+        generate_diff(file1_path_yaml, file2_path_yaml, "wrong")
+        assert "wrong_display_format" in str(error.value)
     current_dir = os.path.dirname(__file__)
     incorrect_json_path = os.path.join(current_dir,
                                        "fixtures/incorrect_json.json")
-    assert "Incorrect data in files" == generate_diff(file1_path_json,
-                                                      incorrect_json_path)
+    with pytest.raises(JSONDecodeError):
+        generate_diff(file1_path_json, incorrect_json_path)
