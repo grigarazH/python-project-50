@@ -13,10 +13,7 @@ def get_file_format(file_content):
 
 
 def parse_file(file_content, format):
-    try:
-        if format == "json":
-            return json.load(file_content)
-        else:
-            return yaml.safe_load(file_content)
-    except ValueError or json.JSONDecodeError or yaml.YAMLError:
-        raise
+    if format == "json":
+        return json.load(file_content)
+    else:
+        return yaml.safe_load(file_content)
